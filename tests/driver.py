@@ -278,6 +278,8 @@ def main():
                 break
         if args.verbosity:
             print('{} XDM queues allocated\n'.format(len(qlist)))
+        if args.keyboard:
+            set_trace()
         if len(qlist) == 0:
             runtime_err('No XDM queues allocated\n')
         xdm = qlist.pop()
@@ -295,6 +297,8 @@ def main():
                 break
         if args.verbosity:
             print('{} RDM queues allocated\n'.format(len(qlist)))
+        if args.keyboard:
+            set_trace()
         if len(qlist) == 0:
             runtime_err('No RDM queues allocated\n')
         rdm = qlist.pop()
