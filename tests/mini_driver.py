@@ -209,6 +209,7 @@ def main():
         datasize = min(datasize, sz2M)
         mmdata = mmap.mmap(data.fileno(), datasize, access=mmap.ACCESS_READ)
         datasha256 = hashlib.sha256(mmdata[0:datasize]).hexdigest()
+        origdata = mmdata[0:datasize]
         if args.verbosity:
             print('datafile sha256={}'.format(datasha256))
         mm2M = mmap.mmap(-1, sz2M, access=mmap.ACCESS_WRITE)
@@ -493,6 +494,14 @@ def main():
             if args.verbosity:
                 print('mm2M sha256 after GET="{}"'.format(mm2Msha256g))
             if mm2Msha256g != datasha256:
+                print('---------------------------------')
+                print('ORIGINAL DATA:')
+                print('"{}"'.format(origdata))
+                print('---------------------------------')
+                print('mm2M after GET')
+                print('---------------------------------')
+                print('"{}"'.format(mm2M[get_offset:get_offset+datasize]))
+                print('---------------------------------')
                 runtime_err('GET sha mismatch: {} != {}'.format(
                     datasha256, mm2Msha256g))
 
