@@ -416,7 +416,7 @@ def main():
                     except XDMcompletionError as e:
                         print('GET_IMM cmpl error: {} {:#x} request_id {:#x}'.format(
                               e, e.status, e.request_id))
-        
+
                     if args.keyboard:
                         set_trace()
                     # test PUT
@@ -664,7 +664,7 @@ def main():
                      '0xDEADBEEFEDA11AB').format(swap64_cmpl.atomic64.retval))
             if args.keyboard:
                 set_trace()
-               
+
             # test atomic 64 bit COMPARE AND SWAP - val is now 0x12356789ABCDEF1
             cas64 = zhpe.xdm_cmd()
             cas64.opcode = zhpe.XDM_CMD.ATM_CAS
